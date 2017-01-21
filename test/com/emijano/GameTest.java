@@ -13,25 +13,11 @@ public class GameTest {
 	 @Test
 	 public void TestGameCfg() {
 	
-	 GameConfigurator cfg = new GameConfigurator();
-	 cfg.processCmd("SHDEI");
+		 GameConfigurator cfg = new GameConfigurator();
+		 cfg.processCmd("SHDEI");
 	
-	 Assert.assertEquals(false, cfg.isCfgFinished());
-	
+		 Assert.assertEquals(false, cfg.isCfgFinished());
 	 }
-
-	@Test
-	public void TestParser() throws CmdFormatException {
-
-//		InputParser parser = new InputParser();
-//		parser.defineCommands();
-//		
-//		parser.parse("SHDEI:X=1,Y=2;");
-//
-//		Assert.assertEquals("name=SHDEI", parser.parse("SHDEI;").toString());
-//		Assert.assertEquals(null, parser.parse("SHDEI"));
-//		Assert.assertEquals("name=SHDEI", parser.parse("SHDEI:X=1,Y=2;").toString());
-
-	}
-
+	 
+	 
 }
