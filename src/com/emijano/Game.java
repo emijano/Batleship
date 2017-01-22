@@ -1,41 +1,42 @@
 package com.emijano;
 
-import java.util.Scanner;
-
-import com.emijano.userInterface.InputParser;
+import com.emijano.userInterface.CmdException;
+import com.emijano.userInterface.CmdHandler;
 
 public class Game {
 
-	private GameConfigurator configurator;
-	private Scanner sc;
-	private InputParser parser;
+	private CmdHandler cmdHandler;
+	
+	
+	Game() {
+		cmdHandler = new CmdHandler();
+	}
 
 	void prepare() {
 
 		/* prepare the game */
-		parser = new InputParser();
-//		parser.defineCommands();
+		cmdHandler.loadCommands();
+//		TODO: load command definitions
+//		TODO: load configuration parameters
 		
 	}
 	
 	void configure() {
 		
-		configurator = new GameConfigurator();
-		sc = new Scanner(System.in);
-				
-		while(!configurator.isCfgFinished()) {
+		boolean configFinished = false;
+
+
+		while(!configFinished) {
 			
-			System.out.println("Execute command:");
-			configurator.processCmd(getUserInput());
+			try {
+				cmdHandler.readCommand();
+				cmdHandler.executeCommand();
+			} catch (CmdException e) {}
 		}
 	}
 
 	void start() {
 		/* start of the game */
-	}
-
-	String getUserInput() {
-		return sc.nextLine();
 	}
 
 }

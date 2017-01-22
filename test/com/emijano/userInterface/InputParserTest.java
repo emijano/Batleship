@@ -3,6 +3,9 @@ package com.emijano.userInterface;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.emijano.userInterface.command.CommandParser;
+
 import org.junit.Assert;
 
 public class InputParserTest {
@@ -10,23 +13,21 @@ public class InputParserTest {
 	@Test
 	public void parseCommandFormat()  {
 		
-		InputParser parser = new InputParser();
+		CommandParser parser = new CommandParser();
 		
-		parser.parseInput("ABCDE");
-		Assert.assertFalse(parser.cmdParsed);
-		Assert.assertEquals(null, parser.cmdName);
-		Assert.assertEquals(null, parser.cmdParams);
+		try {
+			parser.parseCommand("ABCDE");
+		} catch (CmdException e) {
+			Assert.assertEquals("FORMAT ERROR", e.getError());
+		}
 		
-		parser.parseInput("SHDEI:X=1,Y=2;");
-		Assert.assertTrue(parser.cmdParsed);
-		Assert.assertEquals("SHDEI", parser.cmdName);
-		Assert.assertEquals("X=1,Y=2", parser.cmdParams);
+		try {
+			parser.parseCommand("SHDEI:X=1,Y=2,Z=3;");
+		}
+		catch (CmdException e) {}
 		
-		parser.parseInput("SHDEI;");
-		Assert.assertTrue(parser.cmdParsed);
-		Assert.assertEquals("SHDEI", parser.cmdName);
-		Assert.assertEquals("", parser.cmdParams);
-	
+		
 	}
+	
 
 }

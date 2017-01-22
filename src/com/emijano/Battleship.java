@@ -1,5 +1,7 @@
 package com.emijano;
 
+import com.emijano.userInterface.InputReader;
+
 public class Battleship {
 	
 	private static Game game;
@@ -33,7 +35,9 @@ public class Battleship {
 	}
 	
 	private static int getAction() {
-		return 'q';
+		//TODO: better solution than creating class every time
+		InputReader reader = new InputReader();
+		return reader.readInputChar();
 	}
 	
 	private static void performAction(int action) {
