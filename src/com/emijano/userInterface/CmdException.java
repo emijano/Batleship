@@ -16,4 +16,8 @@ public class CmdException extends Exception {
 		this.error = error;
 	}
 	
+	@Override
+	public String getMessage() {
+		return getError();
+	}
 }

@@ -7,9 +7,7 @@ public class Battleship {
 	private static Game game;
 
 	public static void main(String[] args) {
-		
 		startUserMenu();
-		
 	}
 	
 	private static void startUserMenu() {
@@ -17,15 +15,14 @@ public class Battleship {
 		int action;
 		
 		while (true) {
-			
 			printMenu();
 			action = getAction();
 			performAction(action);
-			
 		}
 	}
 	
 	private static void printMenu() {
+
 		String menuText = "";
 		menuText += "Choose action:\n";
 		menuText += "1. New game\n";
@@ -41,7 +38,7 @@ public class Battleship {
 	}
 	
 	private static void performAction(int action) {
-		
+
 		switch (action) {
 			case '1':
 				startNewGame();

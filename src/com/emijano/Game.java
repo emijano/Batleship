@@ -2,14 +2,20 @@ package com.emijano;
 
 import com.emijano.userInterface.CmdException;
 import com.emijano.userInterface.CmdHandler;
+import com.emijano.userInterface.CommandParser;
+import com.emijano.userInterface.InputReader;
+import com.emijano.userInterface.command.Command;
 
 public class Game {
 
 	private CmdHandler cmdHandler;
-	
+	private InputReader reader;
+	private CommandParser cmdParser;
 	
 	Game() {
+		reader = new InputReader();
 		cmdHandler = new CmdHandler();
+		cmdParser = new CommandParser();
 	}
 
 	void prepare() {
@@ -28,9 +34,11 @@ public class Game {
 
 		while(!configFinished) {
 			
+			String inputText = reader.readInputText();
+			
 			try {
-				cmdHandler.readCommand();
-				cmdHandler.executeCommand();
+				Command cmd = cmdParser.extractCommandFromInput(inputText);
+				cmdHandler.executeCommand(cmd);
 			} catch (CmdException e) {}
 		}
 	}

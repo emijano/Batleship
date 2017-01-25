@@ -1,19 +1,27 @@
 package com.emijano.userInterface.command;
 
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class Command {
 
 	private String name;
-	private Param[] params;
+	private HashMap<String, String> params;
 	
 	public Command(String name) {
-		this.setName(name);
+		setName(name);
+		params = new HashMap<>();
 	}
-
-	String getName() {
+	
+	public void addParam(String paramName, String paramVal) {
+		params.put(paramName, paramVal);
+	}
+	
+	public String getName() {
 		return name;
+	}
+	
+	public HashMap<String, String> getParams() {
+		return params;
 	}
 
 	void setName(String name) {
