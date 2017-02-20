@@ -1,5 +1,6 @@
 package com.emijano;
 
+import com.emijano.battlefield.Battlefield;
 import com.emijano.userInterface.CmdException;
 import com.emijano.userInterface.CmdHandler;
 import com.emijano.userInterface.CommandParser;
@@ -11,6 +12,8 @@ public class Game {
 	private CmdHandler cmdHandler;
 	private InputReader reader;
 	private CommandParser cmdParser;
+	public Player player;
+	private Battlefield battlefield;
 	
 	Game() {
 		reader = new InputReader();
@@ -19,28 +22,22 @@ public class Game {
 	}
 
 	void prepare() {
+		
+		Configuration config = new Configuration();
 
-		/* prepare the game */
+		player = new Player(config);
+		battlefield = new Battlefield(config);
+		
 		cmdHandler.loadCommands();
-//		TODO: load command definitions
-//		TODO: load configuration parameters
 		
 	}
 	
 	void configure() {
 		
-		boolean configFinished = false;
-
-
-		while(!configFinished) {
-			
-			String inputText = reader.readInputText();
-			
-			try {
-				Command cmd = cmdParser.extractCommandFromInput(inputText);
-				cmdHandler.executeCommand(cmd);
-			} catch (CmdException e) {}
-		}
+		//player.loadBattlefield()
+		GameConfigurator gameCfg = new GameConfigurator(cmdHandler, reader, cmdParser);
+		player.cofigureFleet(gameCfg);
+		
 	}
 
 	void start() {

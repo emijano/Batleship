@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+
 import com.emijano.userInterface.command.Command;
 
 public class CmdHandlerTest {
@@ -23,21 +24,6 @@ public class CmdHandlerTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	@Test
-	public void positiveCmdDefinitions() throws CmdException {
-		
-		Command cmd1, cmd2;
-
-		cmd1 = new Command("SHDEI");
-		cmd1.addParam("X", "1");
-		cmd1.addParam("Y", "2");
-		
-		cmd2 = new Command("BSGME");
-		
-		cmdH.executeCommand(cmd1);
-		cmdH.executeCommand(cmd2);
-	}
-	
 	@Test
 	public void commandUnknown() throws CmdException {
 		
@@ -81,5 +67,20 @@ public class CmdHandlerTest {
 		thrown.expect(CmdException.class);
 		thrown.expectMessage("UNKNOWN PARAMETER");
 		cmdH.executeCommand(cmd);
+	}
+
+	@Test
+	public void positiveCmdDefinitions() throws CmdException {
+
+		Command cmd1, cmd2;
+
+		cmd1 = new Command("SHDEI");
+		cmd1.addParam("X", "1");
+		cmd1.addParam("Y", "2");
+
+		cmd2 = new Command("BSGME");
+
+		cmdH.executeCommand(cmd1);
+		cmdH.executeCommand(cmd2);
 	}
 }

@@ -2,7 +2,7 @@ package com.emijano;
 
 import com.emijano.userInterface.InputReader;
 
-public class Battleship {
+public class Battleships {
 	
 	private static Game game;
 

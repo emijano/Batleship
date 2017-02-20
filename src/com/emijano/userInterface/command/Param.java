@@ -5,9 +5,9 @@ public class Param {
 	private String name;
 	private String value;
 	
-	Param(String pName, String pValue) {
-		name = pName;
-		value = pValue;
+	Param(String paramName, String paramValue) {
+		name = paramName;
+		value = paramValue;
 	}
 	
 	String getName() {

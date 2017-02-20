@@ -1,45 +1,42 @@
 package com.emijano;
 
-import java.util.HashSet;
-
-import com.emijano.userInterface.CmdDefinition;
 import com.emijano.userInterface.CmdException;
+import com.emijano.userInterface.CmdHandler;
+import com.emijano.userInterface.CommandParser;
+import com.emijano.userInterface.InputReader;
 import com.emijano.userInterface.command.Command;
 
 public class GameConfigurator {
 	
-	private boolean cfgFinished = false;
-
+	private CmdHandler cmdHandler;
+	private InputReader inReader;
+	private CommandParser cmdParser;
+	
 	//user interface
 	//ship factory
 	//battlefield factory
 	
-	GameConfigurator () {
-		/* game with default settings */
-		
+	GameConfigurator(CmdHandler handler, InputReader reader, CommandParser parser) {
+		cmdHandler = handler;
+		cmdParser = parser;
+		inReader = reader;
 	}
+	
+	public void restart() {}
+	
+	public Object performConfig() {
+		
+		String inputText = inReader.readInputText();
 
-	GameConfigurator (String userSettings) {
-		/* game with user settings */
-		this();
-	}
-	
-	public void processCmd(String input) {
+		try {
+			Command cmd = cmdParser.extractCommandFromInput(inputText);
+			cmdHandler.executeCommand(cmd);
+			System.out.println("A");
+			if (cmd.getType() == Command.CMDTYPE_OBJECT)
+				return cmdHandler.getCmdObject();
+			
+		} catch (CmdException e) {}
 		
-		Command cmd;
-		
-//		try {
-//			cmd = parser.parse(input);
-//			
-//			if (cmd != null && cmd.getName() == "BSMGE")
-//				cfgFinished = true;
-//			
-//		} catch (CmdFormatException e) {}
-		
+		return null;
 	}
-	
-	public boolean isCfgFinished() {
-		return this.cfgFinished;
-	}
-	
 }
