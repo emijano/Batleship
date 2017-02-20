@@ -31,7 +31,6 @@ public class GameConfigurator {
 		try {
 			Command cmd = cmdParser.extractCommandFromInput(inputText);
 			cmdHandler.executeCommand(cmd);
-			System.out.println("A");
 			if (cmd.getType() == Command.CMDTYPE_OBJECT)
 				return cmdHandler.getCmdObject();
 			
