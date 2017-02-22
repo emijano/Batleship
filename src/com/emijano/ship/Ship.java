@@ -7,16 +7,15 @@ abstract public class Ship {
 	public static final int SHIP_SIZE_DESTROYER  = 2;
 	public static final int SHIP_SIZE_SUBMARINE  = 1;
 	
-	private char cordX;
-	private char cordY;
+	private int cordX;
+	private int cordY;
 
 	private Location loc;
 	
-	Ship(char letter, char number) {
+	Ship(int cordX, int cordY) {
 		
-		cordX = letter;
-		cordY = number;
-		loc = new Location(letter, number);
+		this.cordX = cordX;
+		this.cordY = cordY;
 		
 	}
 	

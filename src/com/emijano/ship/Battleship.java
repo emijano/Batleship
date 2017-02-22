@@ -2,8 +2,8 @@ package com.emijano.ship;
 
 public class Battleship extends Ship {
 	
-	public Battleship(char letter, char number) {
-		super(letter, number);
+	public Battleship(int cordX, int cordY) {
+		super(cordX, cordY);
 	}
 	
 }

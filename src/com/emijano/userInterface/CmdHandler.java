@@ -82,11 +82,17 @@ public class CmdHandler {
 	}
 	
 	private void createShip(Command cmd) {
-		
-		char x = cmd.getParamValue("X").charAt(0);
-		char y = cmd.getParamValue("Y").charAt(0);
-		
+		int x = getXCordFromCommand(cmd);
+		int y = getYCordFromCommand(cmd);
 		returnObj = shipFactory.createShip(x, y);
+	}
+	
+	private int getXCordFromCommand(Command cmd) {
+		return cmd.getParamValue("X").charAt(0) - 0x40;
+	}
+	
+	private int getYCordFromCommand(Command cmd) {
+		return Integer.valueOf(cmd.getParamValue("Y"));
 	}
 
 }

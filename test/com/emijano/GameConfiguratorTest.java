@@ -27,7 +27,7 @@ public class GameConfiguratorTest {
 		 GameConfigurator configurator = new GameConfigurator(cmdH, new InputReader(), new CommandParser());
 		 
 		 Object o = configurator.performConfig();
-		 assertEquals(o.toString(), new Battleship('A', '2').toString());
+		 assertEquals(o.toString(), new Battleship(1, 2).toString());
 	 }
 
 }
